@@ -1,0 +1,15 @@
+.Lottery {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.Lottery-btn {
+    margin-top: 20px;
+    font-size: 20px;
+    padding: 8px;
+    width: 200px;
+}
