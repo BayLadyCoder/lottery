@@ -3,9 +3,15 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    display: flex;
+    justify-content: space-between;
 }
 
-
+.Lottery-balls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .Lottery-btn {
     margin-top: 20px;

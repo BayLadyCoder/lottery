@@ -1,54 +1,48 @@
 import React, { Component } from "react";
 import "./Lottery.css";
-import LottoBalls from "./LottoBalls";
+import Ball from "./Ball";
 
 class Lottery extends Component {
+  static defaultProps = {
+    title: "Lotto",
+    numBalls: 6,
+    maxNum: 40
+  };
+
+
   constructor(props) {
     super(props);
     this.state = {
-      lottoBalls: [3, 12, 34, 19, 5, 26],
-      miniDailyBalls: [17, 6, 29, 40]
+      nums: []
     };
 
-    this.randNums = this.randNums.bind(this);
-    this.randLottoBalls = this.randLottoBalls.bind(this);
-    this.randMiniDailyBalls = this.randMiniDailyBalls.bind(this);
+  this.randNumBalls = this.randNumBalls.bind(this);
+  this.randNumBalls();
+
   }
 
-  randNums(numBalls) {
+  randNumBalls() {
     let numArr = [];
     let num;
-    for (let i = 0; i < numBalls; i++) {
-      num = Math.floor(Math.random() * 40 + 1);
+    for (let i = 0; i < this.props.numBalls; i++) {
+      num = Math.floor(Math.random() * this.props.maxNum + 1);
       numArr.push(num);
     }
-    // console.log(numArr);
-    return numArr;
+    console.log(numArr);
+    this.setState({nums:numArr});
   }
 
-  randLottoBalls() {
-    let arr = this.randNums(6);
-    // console.log(arr);
-    this.setState({ lottoBalls: arr });
-  }
-
-  randMiniDailyBalls() {
-    let arr = this.randNums(4);
-    this.setState({ miniDailyBalls: arr });
-  }
 
   render() {
-    let balls6 = this.state.lottoBalls;
     return (
       <div className="Lottery">
-        <h2>Lotto</h2>
-        <LottoBalls nums={this.state.lottoBalls} />
-        <button className="Lottery-btn" onClick={this.randLottoBalls}>
-          Generate Numbers
-        </button>
-        <h2>Mini Daily</h2>
-        <LottoBalls nums={this.state.miniDailyBalls} />
-        <button className="Lottery-btn" onClick={this.randMiniDailyBalls}>
+        <h2>{this.props.title}</h2>
+        <div className="Lottery-balls">
+        {
+          this.state.nums.map( n => <Ball num={n} /> )
+        }
+        </div>
+        <button className="Lottery-btn" onClick={this.randNumBalls}>
           Generate Numbers
         </button>
       </div>
