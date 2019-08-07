@@ -9,16 +9,13 @@ class Lottery extends Component {
     maxNum: 40
   };
 
-
   constructor(props) {
     super(props);
     this.state = {
-      nums: []
+      nums: Array.from({ length: this.props.numBalls })
     };
 
-  this.randNumBalls = this.randNumBalls.bind(this);
-  this.randNumBalls();
-
+    this.randNumBalls = this.randNumBalls.bind(this);
   }
 
   randNumBalls() {
@@ -29,18 +26,17 @@ class Lottery extends Component {
       numArr.push(num);
     }
     console.log(numArr);
-    this.setState({nums:numArr});
+    this.setState({ nums: numArr });
   }
-
 
   render() {
     return (
       <div className="Lottery">
         <h2>{this.props.title}</h2>
         <div className="Lottery-balls">
-        {
-          this.state.nums.map( n => <Ball num={n} /> )
-        }
+          {this.state.nums.map(n => (
+            <Ball num={n} />
+          ))}
         </div>
         <button className="Lottery-btn" onClick={this.randNumBalls}>
           Generate Numbers
